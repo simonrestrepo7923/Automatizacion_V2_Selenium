@@ -1,12 +1,12 @@
 {
-  "equipo": "",
-  "integrantes": [],
-  "escenario": "",
+  "equipo": "Selenium-E4",
+  "integrantes": ["simon restrepo", "sebastian palacio", "juan pablo cartagena","nicolas giraldo"],
+  "escenario": "E4",
   "usoDeIA": "",
   "minutos": {
-    "instalacion": null,
-    "ca2": null,
-    "ca3": null
+    "instalacion": 10,
+    "ca2": 20,
+    "ca3": 15
   },
   "diagnostico": {
     "diceQueFallo": null,
