@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const { By, until, Key } = require('selenium-webdriver');
 const { BASE_URL, crearDriver } = require('../soporte/driver');
-
+ 
 /**
  * Selenium + Mocha · los tres criterios del duelo.
  *
@@ -10,7 +10,7 @@ const { BASE_URL, crearDriver } = require('../soporte/driver');
  */
 describe('Duelo · tres criterios de aceptación', function () {
   let driver;
-
+ 
   // Selenium no trae ejecutor: hay que abrir y cerrar el navegador a mano, en cada prueba.
   beforeEach(async () => {
     driver = await crearDriver();
@@ -18,42 +18,71 @@ describe('Duelo · tres criterios de aceptación', function () {
   afterEach(async () => {
     await driver.quit();
   });
-
+ 
   // ------------------------------------------------------------------ EJEMPLO RESUELTO
   it('US-01 CA1: el catálogo muestra 8 productos', async () => {
     await driver.get(BASE_URL);
     // Selenium no espera por ti: hay que esperar a mano a que existan los elementos.
     await driver.wait(until.elementLocated(By.css('h3')), 5000);
-
+ 
     const productos = await driver.findElements(By.css('h3'));
     assert.equal(productos.length, 8);
   });
-
+ 
   // ------------------------------------------------------------------ TU TURNO · US-04 CA2
-  it.skip('US-04 CA2: no deja agregar 7 mochilas de una vez (stock 6) y avisa', async () => {
+  it('US-04 CA2: no deja agregar 7 mochilas de una vez (stock 6) y avisa', async () => {
     // Dado   un producto con stock 6 (la Mochila escolar),
+    await driver.get(BASE_URL);
+    const tarjeta = await driver.wait(
+      until.elementLocated(
+        By.xpath("//h3[normalize-space()='Mochila escolar']/ancestor::div[contains(@class,'rounded-lg')][1]")
+      ),
+      5000
+    );
+ 
     // Cuando intento agregar 7 unidades de una vez,
-    // Entonces veo un aviso con el stock disponible y no se agrega nada.
-    //
-    // Pistas:
-    //  · La tarjeta de la mochila es el <div class="rounded-lg"> que contiene el <h3> «Mochila escolar»
-    //    (XPath: //h3[normalize-space()='...']/ancestor::div[contains(@class,'rounded-lg')][1]).
-    //  · El campo de cantidad ya trae un 1 y sendKeys escribe AL FINAL (daría 17): selecciónenlo antes con
-    //    sendKeys(Key.chord(Key.CONTROL, 'a'), '7')  (en macOS también sirve Key.COMMAND).
-    //  · El aviso es un alert() del navegador: until.alertIsPresent() → driver.switchTo().alert() → getText() → accept().
-    //  · «Nada se agrega» = el carrito sigue diciendo «Tu carrito está vacío.»
+    const cantidad = await tarjeta.findElement(By.css('input[type=number]'));
+    await cantidad.sendKeys(Key.chord(Key.CONTROL, 'a'), '7'); // reemplaza el 1 que ya trae
+    assert.equal(await cantidad.getAttribute('value'), '7'); // comprueba que quedó 7 y no 17
+    await tarjeta.findElement(By.xpath(".//button[normalize-space()='Agregar']")).click();
+ 
+    // Entonces veo un aviso con el stock disponible...
+    await driver.wait(until.alertIsPresent(), 5000);
+    const aviso = await driver.switchTo().alert();
+    const texto = await aviso.getText();
+    await aviso.accept();
+    assert.match(texto, /Solo hay 6 unidades/);
+ 
+    // ...y no se agrega nada.
+    const vacio = await driver.findElements(By.xpath("//*[normalize-space()='Tu carrito está vacío.']"));
+    assert.equal(vacio.length > 0, true, 'El carrito debería seguir vacío');
   });
-
+ 
   // ------------------------------------------------------------------ TU TURNO · US-09 CA1
-  it.skip('US-09 CA1: DESC10 descuenta el 10 % del subtotal', async () => {
+  it('US-09 CA1: DESC10 descuenta el 10 % del subtotal', async () => {
     // Dado   un carrito con productos (1 Mochila escolar, $ 65.000),
+    await driver.get(BASE_URL);
+    const tarjeta = await driver.wait(
+      until.elementLocated(
+        By.xpath("//h3[normalize-space()='Mochila escolar']/ancestor::div[contains(@class,'rounded-lg')][1]")
+      ),
+      5000
+    );
+    await tarjeta.findElement(By.xpath(".//button[normalize-space()='Agregar']")).click();
+ 
     // Cuando aplico el código DESC10,
+    const codigo = await driver.wait(until.elementLocated(By.css("input[placeholder='Código de descuento']")), 5000);
+    await codigo.sendKeys('DESC10');
+    await driver.findElement(By.xpath("//button[normalize-space()='Aplicar']")).click();
+ 
     // Entonces el descuento es el 10 % del subtotal: $ 6.500.
-    //
-    // Pistas:
-    //  · Agregar la mochila: el botón «Agregar» de SU tarjeta (la cantidad por defecto es 1).
-    //  · El campo del código se ubica por su placeholder: input[placeholder='Código de descuento'].
-    //  · El valor está en la fila cuyo <dt> empieza por «Descuento»: su hermano <dd> (XPath: following-sibling::dd).
-    //  · React dibuja esa fila DESPUÉS del clic en «Aplicar»: espérala con driver.wait(...) antes de leerla.
+    // React dibuja la fila «Descuento» después del clic: hay que esperarla.
+    const descuento = await driver.wait(
+      until.elementLocated(By.xpath("//dt[starts-with(normalize-space(),'Descuento')]/following-sibling::dd")),
+      5000
+    );
+    const valor = await descuento.getText();
+    assert.match(valor, /6\.500/);
   });
 });
+ 
