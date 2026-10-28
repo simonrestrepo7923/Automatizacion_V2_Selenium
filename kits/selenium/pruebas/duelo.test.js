@@ -4,9 +4,6 @@ const { BASE_URL, crearDriver } = require('../soporte/driver');
  
 /**
  * Selenium + Mocha · los tres criterios del duelo.
- *
- * CA1 viene RESUELTO: léanlo, ejecútenlo (npm test) y entiendan cada línea ANTES de escribir los otros dos.
- * Los otros dos están en `it.skip(...)`: cambien `it.skip` por `it` cuando empiecen a implementarlos.
  */
 describe('Duelo · tres criterios de aceptación', function () {
   let driver;
@@ -29,7 +26,7 @@ describe('Duelo · tres criterios de aceptación', function () {
     assert.equal(productos.length, 8);
   });
  
-  // ------------------------------------------------------------------ TU TURNO · US-04 CA2
+  // ------------------------------------------------------------------  US-04 CA2
   it('US-04 CA2: no deja agregar 7 mochilas de una vez (stock 6) y avisa', async () => {
     // Dado   un producto con stock 6 (la Mochila escolar),
     await driver.get(BASE_URL);

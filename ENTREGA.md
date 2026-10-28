@@ -1,10 +1,10 @@
 # Entrega · Duelo de herramientas
 
-**Equipo:** ______________________  
-**Integrantes:** ______________________  
-**Repositorio:** ______________________  
-**Herramienta que nos tocó:** ☐ Selenium + Mocha &nbsp; ☐ Cypress &nbsp; ☐ Playwright + Cucumber  
-**Escenario que nos tocó:** ______________________
+**Equipo:** NOMBRE O NÚMERO DEL EQUIPO  
+**Integrantes:** Simon Restrepo aristizabal (Juan Pablo Cartagena, Sebastian Palacio, Nicolas Giraldo)
+**Repositorio:** https://github.com/simonrestrepo7923/Automatizacion_V2_Selenium  
+**Herramienta que nos tocó:** ☒ Selenium + Mocha &nbsp; ☐ Cypress &nbsp; ☐ Playwright + Cucumber  
+**Escenario que nos tocó:** E4 · Agencia Pixel
 
 > Completa este archivo a medida que avanzas (cada sección dice en qué parte de la guía se llena).
 > Lo que se mide con números lo guarda el medidor en `medidas.json`; aquí va lo que un número no dice.
@@ -25,24 +25,19 @@ Archivos que entregan, todos en el repositorio y con `git push`:
 
 ## 1. Qué hace la herramienta por nosotros (Parte 1)
 
-Lean el ejemplo resuelto (US-01 CA1) en su kit, **línea por línea**, y los archivos de `soporte` o de configuración
-que vienen con él. Para cada tarea que alguien debe cumplir en una prueba de interfaz, digan **quién la hace**:
-*la herramienta sola*, *una librería que hubo que sumar* (¿cuál?) o *código nuestro*. Escriban el archivo y la línea.
-
 | Tarea | ¿Quién la hace? | ¿Dónde lo vemos? (archivo y línea) |
 |---|---|---|
-| Abrir el navegador y cerrarlo al terminar | | |
-| Esperar a que el elemento exista o se pueda usar | | |
-| Reintentar una comprobación que todavía no se cumple | | |
-| Ejecutar las pruebas, contarlas y decir cuántas pasaron | | |
-| Comprobar un valor y mostrar «esperado» y «recibido» | | |
-| Leer el texto de un `alert()` del navegador *(lo descubren en la Parte 2)* | | |
-| Dejar evidencia (captura, video o traza) cuando una prueba falla | | |
+| Abrir el navegador y cerrarlo al terminar | Nuestro código. Escribimos las instrucciones para abrir y cerrar Chrome en cada prueba. | `pruebas/duelo.test.js`, líneas 15 a 20; `soporte/driver.js`, línea 9 |
+| Esperar a que el elemento exista o se pueda usar | Nuestro código. Selenium no espera automáticamente; debemos indicarle que espere. | `pruebas/duelo.test.js`, línea 26 |
+| Reintentar una comprobación que todavía no se cumple | Nadie. Si la comprobación falla, la prueba falla inmediatamente y no se vuelve a intentar. | `pruebas/duelo.test.js`, línea 29 |
+| Ejecutar las pruebas, contarlas y decir cuántas pasaron | Mocha, una librería adicional. Ejecuta las pruebas y muestra resultados como `3 passing`. | `package.json` y `.mocharc.json` |
+| Comprobar un valor y mostrar «esperado» y «recibido» | `assert`, una librería incluida en Node.js. Comprueba si los valores son correctos y muestra las diferencias. | `pruebas/duelo.test.js`, líneas 1 y 29 |
+| Leer el texto de un `alert()` del navegador *(lo descubren en la Parte 2)* | Selenium lee el mensaje, pero nuestro código configura Chrome para evitar que la ventana se cierre automáticamente. | `soporte/driver.js`, líneas 14 a 16; `pruebas/duelo.test.js`, líneas 50 a 54 |
+| Dejar evidencia (captura, video o traza) cuando una prueba falla | Nadie. Si una prueba falla, no se guarda ninguna captura ni video. | Esta función no aparece en `duelo.test.js` ni en `driver.js`. |
 
-**Con esta tabla:** ¿la herramienta que nos tocó es una *librería*, un *framework*, o una librería con piezas que
-tuvimos que armar nosotros? Respondan en dos frases con la idea «la librería la llamas tú; el framework te llama a ti».
+> _Respuesta:_ Selenium es una librería: nosotros la llamamos para controlar el navegador, y las demás tareas las hacen Mocha, `assert` y el código que escribimos. Un framework, en cambio, nos llama a nosotros y ya trae incluido cómo ejecutar, esperar y comprobar.
 
-> _Respuesta:_
+
 
 ## 2. Bitácora de las historias (Partes 2 y 3)
 
