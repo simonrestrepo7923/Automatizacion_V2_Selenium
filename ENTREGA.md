@@ -55,8 +55,6 @@ Archivos que entregan, todos en el repositorio y con `git push`:
 
 ## 3. Lo que medimos (Parte 4)
 
-## 3. Lo que medimos (Parte 4)
-
 Resumen de nuestro kit (Selenium + Mocha):
 
 ```text
