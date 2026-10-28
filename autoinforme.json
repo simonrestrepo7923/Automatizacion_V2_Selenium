@@ -1,6 +1,6 @@
 {
   "equipo": "Selenium-E4",
-  "integrantes": ["simon restrepo", "sebastian palacio", "juan pablo cartagena","nicolas giraldo"],
+  "integrantes": ["simon restrepo"],
   "escenario": "E4",
   "usoDeIA": "generó código",
   "minutos": {
@@ -9,11 +9,11 @@
     "ca3": 15
   },
   "diagnostico": {
-    "diceQueFallo": null,
-    "esperadoYRecibido": null,
-    "lineaDeLaPrueba": null,
-    "capturaOVideo": null,
-    "trazaOInforme": null
+    "diceQueFallo": true,
+    "esperadoYRecibido": true,
+    "lineaDeLaPrueba": true,
+    "capturaOVideo": false,
+    "trazaOInforme": false
   },
-  "notas": ""
+  "notas": "Cuando la prueba falló, el mensaje mostró qué falló, el valor esperado, el recibido y la línea. Eso lo hacen assert y Mocha, no Selenium. No se guardó ninguna foto ni informe del error."
 }

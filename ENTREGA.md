@@ -1,7 +1,7 @@
 # Entrega · Duelo de herramientas
 
 **Equipo:** Selenium-E4  
-**Integrantes:** Simon Restrepo aristizabal (Juan Pablo Cartagena, Sebastian Palacio, Nicolas Giraldo)
+**Integrantes:** Simon Restrepo aristizabal 
 **Repositorio:** https://github.com/simonrestrepo7923/Automatizacion_V2_Selenium  
 **Herramienta que nos tocó:** ☒ Selenium + Mocha &nbsp; ☐ Cypress &nbsp; ☐ Playwright + Cucumber  
 **Escenario que nos tocó:** E4 · Agencia Pixel
@@ -55,46 +55,61 @@ Archivos que entregan, todos en el repositorio y con `git push`:
 
 ## 3. Lo que medimos (Parte 4)
 
-Pega el resumen que imprimió `npm run medir` en tu kit y en el control (Playwright Test):
+## 3. Lo que medimos (Parte 4)
+
+Resumen de nuestro kit (Selenium + Mocha):
 
 ```text
-(resumen de tu kit)
+Velocidad ......... mediana 9.43 s  (mínimo 8.67 · máximo 10.32)
+Estabilidad ....... 10 de 10 corridas completas
+Código ............ 57 líneas de pruebas + 16 de soporte = 73
+selenium-webdriver. 4.51.0 instalada · última publicación hace 18 días (v4.51.0)
+mocha.............. 12.0.3 instalada · última publicación hace 26 días (v12.0.3)
+Autoinforme ....... minutos {"instalacion":10,"ca2":20,"ca3":15}, diagnóstico 3/5
 ```
+
+Resumen de la herramienta de comparación (Playwright Test):
 
 ```text
-(resumen del control)
+Velocidad ......... mediana 9.45 s  (mínimo 8.85 · máximo 11.41)
+Estabilidad ....... 10 de 10 corridas completas
+Código ............ 34 líneas de pruebas + 14 de soporte = 48
+@playwright/test... 1.64.1 instalada · última publicación hace 13 días (v1.64.1)
 ```
 
-- Mediana de nuestro kit: ______ s · Mediana del control en **nuestra** máquina: ______ s · **Veces el control** (kit ÷ control): ______
-- Corridas completas de nuestro kit: ______ de ______
-- Líneas de código (pruebas + soporte): ______
-- Puntos de diagnóstico (de 5): ______
+- Mediana de nuestro kit: **9,43 s** · Mediana de la herramienta de comparación en **nuestro** computador: **9,45 s** · **Relación de velocidad** (kit ÷ control): **1,00**
+- Ejecuciones completas de nuestro kit: **10 de 10**
+- Líneas de código (pruebas + soporte): **73**
+- Puntos de diagnóstico obtenidos (de 5): **3**
 
-**El fallo a propósito.** ¿Qué rompieron y cómo? Pega las primeras 10 líneas de lo que dijo la herramienta y señala
-qué ayudaba a encontrar la causa y qué faltaba.
+**El error provocado a propósito.** Cambiamos el número 8 por el 9 en la prueba de los productos (`duelo.test.js`, línea 26). Esto fue lo que mostró:
 
 ```text
-(salida del fallo)
+1) Duelo · tres criterios de aceptación
+     US-01 CA1: el catálogo muestra 8 productos:
+   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+8 !== 9
+   + expected - actual
+   -8
+   +9
+   at Context.<anonymous> (pruebas\duelo.test.js:26:12)
 ```
 
-**Las cinco preguntas del diagnóstico** (se contestan **con el kit tal como llegó**, y el «sí» o «no» va en `autoinforme.json`).
-En la última columna digan *de dónde vino* cada evidencia: de la **herramienta** (sola), de la **configuración del kit** o de
-**código nuestro**.
+El mensaje fue útil porque indicó el nombre de la prueba, el valor esperado (9), el valor recibido (8) y la línea donde ocurrió el error (26). Sin embargo, nos faltó una captura de pantalla en ese momento para ver qué aparecía en la página.
 
 | Pregunta (campo en `autoinforme.json`) | ¿Sí o no? | ¿De dónde vino? |
 |---|:---:|---|
-| ¿El mensaje dice **qué** falló (el elemento o la comprobación), sin que haya que adivinar? (`diceQueFallo`) | | |
-| ¿Muestra el valor **esperado** y el **recibido**? (`esperadoYRecibido`) | | |
-| ¿Señala la **línea de nuestra prueba** donde falló? (`lineaDeLaPrueba`) | | |
-| ¿Quedó una **captura de pantalla** (o un video) de la falla en el disco? (`capturaOVideo`) | | |
-| ¿Quedó una **traza o un informe** para repasar la falla paso a paso sin volver a correrla? (`trazaOInforme`) | | |
+| ¿El mensaje indica **qué** falló (el elemento o la comprobación), sin tener que adivinar? (`diceQueFallo`) | Sí | De `assert` de Node y de Mocha (librerías utilizadas en el kit) |
+| ¿Muestra el valor **esperado** y el **recibido**? (`esperadoYRecibido`) | Sí | De `assert` de Node |
+| ¿Indica la **línea de nuestra prueba** donde ocurrió el error? (`lineaDeLaPrueba`) | Sí | De Node y Mocha |
+| ¿Se guardó una **captura de pantalla** o un video del fallo en el disco? (`capturaOVideo`) | No | Ni Selenium ni nuestro kit guardan capturas automáticamente |
+| ¿Se guardó una **traza o un informe** para revisar el fallo paso a paso sin volver a ejecutar las pruebas? (`trazaOInforme`) | No | Solo quedó el mensaje que apareció en la terminal |
 
-**Tres cosas que nuestra medición NO demuestra** (pistas: cuántas pruebas, cuántas corridas, cuántas máquinas,
-qué mide el tiempo, qué cuenta una «línea de código»):
+**Tres cosas que nuestra medición NO demuestra:**
 
-1.
-2.
-3.
+1. Solo hicimos 3 pruebas. Por eso, no sabemos cómo se comportaría Selenium con 300 pruebas.
+2. Todas las mediciones se hicieron en un solo computador y con Chrome. Los tiempos pueden cambiar si usamos otra máquina o un navegador diferente.
+3. El tiempo medido incluye abrir y cerrar Chrome, no solo ejecutar las pruebas. Además, contar líneas de código no indica qué tan difícil será mantenerlo con el tiempo.
 
 ## 4. Mirando el tablero (Parte 5)
 

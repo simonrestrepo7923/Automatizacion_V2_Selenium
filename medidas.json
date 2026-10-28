@@ -1,0 +1,77 @@
+{
+  "esquema": 1,
+  "equipo": "Selenium-E4",
+  "herramienta": "selenium",
+  "nombre": "Selenium + Mocha",
+  "fecha": "2026-10-28T02:50:17.716Z",
+  "entorno": {
+    "node": "v22.23.4",
+    "sistema": "win32 x64"
+  },
+  "corridas": {
+    "total": 10,
+    "completas": 10,
+    "conFallos": 0,
+    "segundos": [
+      9.6,
+      9.4,
+      8.98,
+      8.67,
+      9.39,
+      9.26,
+      9.73,
+      9.45,
+      10.32,
+      9.76
+    ],
+    "mediana": 9.43,
+    "minimo": 8.67,
+    "maximo": 10.32
+  },
+  "pruebas": {
+    "esperadas": 3,
+    "pasanEnLaUltimaCorrida": 3
+  },
+  "codigo": {
+    "pruebas": 57,
+    "soporte": 16,
+    "total": 73
+  },
+  "paquetes": {
+    "selenium-webdriver": {
+      "instalada": "4.51.0",
+      "ultimaVersion": "4.51.0",
+      "ultimaPublicacion": "2026-10-09T19:02:23.646Z",
+      "dias": 18
+    },
+    "mocha": {
+      "instalada": "12.0.3",
+      "ultimaVersion": "12.0.3",
+      "ultimaPublicacion": "2026-10-01T04:37:57.410Z",
+      "dias": 26
+    }
+  },
+  "autoinforme": {
+    "equipo": "Selenium-E4",
+    "integrantes": [
+      "simon restrepo"
+    ],
+    "escenario": "E4",
+    "usoDeIA": "generó código",
+    "minutos": {
+      "instalacion": 10,
+      "ca2": 20,
+      "ca3": 15
+    },
+    "diagnostico": {
+      "diceQueFallo": true,
+      "esperadoYRecibido": true,
+      "lineaDeLaPrueba": true,
+      "capturaOVideo": false,
+      "trazaOInforme": false
+    },
+    "notas": "Cuando la prueba falló, el mensaje mostró qué falló, el valor esperado, el recibido y la línea. Eso lo hacen assert y Mocha, no Selenium. No se guardó ninguna foto ni informe del error.",
+    "puntosDiagnostico": 3,
+    "sinResponder": 0
+  }
+}
