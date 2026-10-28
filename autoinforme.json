@@ -2,7 +2,7 @@
   "equipo": "Selenium-E4",
   "integrantes": ["simon restrepo", "sebastian palacio", "juan pablo cartagena","nicolas giraldo"],
   "escenario": "E4",
-  "usoDeIA": "",
+  "usoDeIA": "generó código",
   "minutos": {
     "instalacion": 10,
     "ca2": 20,

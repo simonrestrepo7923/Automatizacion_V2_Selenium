@@ -41,21 +41,17 @@ Archivos que entregan, todos en el repositorio y con `git push`:
 
 ## 2. Bitácora de las historias (Partes 2 y 3)
 
-Una columna por historia. «Minutos» son los mismos que anotan en `autoinforme.json`: desde que empiezan a escribir
-hasta que ven la prueba en verde.
-
 | | US-04 CA2 (7 mochilas, stock 6) | US-09 CA1 (DESC10) |
 |---|---|---|
-| Minutos hasta el verde | | |
-| Primer intento que **no** funcionó: qué escribimos y qué dijo la herramienta | | |
-| Mensaje de error que nos ayudó (o que nos confundió) | | |
-| Qué tuvimos que buscar en la documentación (enlace) | | |
-| Qué haría distinto un equipo con más experiencia en esta herramienta | | |
+| Minutos hasta el verde | 20 | 15 |
+| Primer intento que **no** funcionó: qué escribimos y qué dijo la herramienta | Partimos de un código hecho con ayuda de un asistente y funcionó a la primera. Cuando la dañamos a propósito, escribimos sin querer `npm test` dentro del código y la prueba falló porque el texto no coincidía. | Funcionó a la primera. Cuando cambiamos a propósito `6.500` por `9.999`, falló como debía. |
+| Mensaje de error que nos ayudó (o que nos confundió) | Nos ayudó: el error decía qué esperaba («5 unidades»), qué recibió («6 unidades») y en qué línea falló (51). Nos confundió: las líneas `DevTools listening…`, que parecen errores pero no lo son. | Nos ayudó: el error mostró el valor real de la página (`$ 6.500`) junto al que esperábamos (`9.999`). |
+| Qué tuvimos que buscar en la documentación (enlace) | Cómo funciona Selenium: https://www.selenium.dev/documentation/ y el video https://www.youtube.com/watch?v=b163U9tGzfY | Las mismas fuentes y las pistas del archivo de pruebas. |
+| Qué haría distinto un equipo con más experiencia en esta herramienta | No repetiría el código para buscar la mochila; lo escribiría una sola vez y lo usaría en las dos pruebas. | Lo mismo: escribiría una sola vez la búsqueda de la mochila y la espera. |
 
-**Lo más distinto frente a US-01 CA1** (el ejemplo resuelto): ¿qué cambió al leer un `alert()`, al elegir *dentro de
-una tarjeta* y al leer un valor del carrito? Piensen en esperas, selectores y en cómo leyeron el resultado.
+**Lo más distinto frente a US-01 CA1:**
 
-> _Respuesta:_
+> _Respuesta:_ La primera prueba solo consistía en esperar y contar los productos. En la prueba de las mochilas, tuvimos que esperar el mensaje emergente (alert), pasar a el, leerlo y cerrarlo. Además, como había ocho botones «Agregar» iguales, fue necesario buscar el que estaba dentro de la tarjeta de la mochila. En la prueba del descuento, tuvimos que esperar a que apareciera la fila «Descuento» después de presionar «Aplicar» para poder leer su valor.
 
 ## 3. Lo que medimos (Parte 4)
 
