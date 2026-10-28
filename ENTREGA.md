@@ -1,6 +1,6 @@
 # Entrega · Duelo de herramientas
 
-**Equipo:** NOMBRE O NÚMERO DEL EQUIPO  
+**Equipo:** Selenium-E4  
 **Integrantes:** Simon Restrepo aristizabal (Juan Pablo Cartagena, Sebastian Palacio, Nicolas Giraldo)
 **Repositorio:** https://github.com/simonrestrepo7923/Automatizacion_V2_Selenium  
 **Herramienta que nos tocó:** ☒ Selenium + Mocha &nbsp; ☐ Cypress &nbsp; ☐ Playwright + Cucumber  
@@ -27,12 +27,12 @@ Archivos que entregan, todos en el repositorio y con `git push`:
 
 | Tarea | ¿Quién la hace? | ¿Dónde lo vemos? (archivo y línea) |
 |---|---|---|
-| Abrir el navegador y cerrarlo al terminar | Nuestro código. Escribimos las instrucciones para abrir y cerrar Chrome en cada prueba. | `pruebas/duelo.test.js`, líneas 15 a 20; `soporte/driver.js`, línea 9 |
-| Esperar a que el elemento exista o se pueda usar | Nuestro código. Selenium no espera automáticamente; debemos indicarle que espere. | `pruebas/duelo.test.js`, línea 26 |
-| Reintentar una comprobación que todavía no se cumple | Nadie. Si la comprobación falla, la prueba falla inmediatamente y no se vuelve a intentar. | `pruebas/duelo.test.js`, línea 29 |
+| Abrir el navegador y cerrarlo al terminar | Nuestro código. Escribimos las instrucciones para abrir y cerrar Chrome en cada prueba. | `pruebas/duelo.test.js`, líneas 12 a 17; `soporte/driver.js`, línea 9 |
+| Esperar a que el elemento exista o se pueda usar | Nuestro código. Selenium no espera automáticamente; debemos indicarle que espere. | `pruebas/duelo.test.js`, línea 23 |
+| Reintentar una comprobación que todavía no se cumple | Nadie. Si la comprobación falla, la prueba falla inmediatamente y no se vuelve a intentar. | `pruebas/duelo.test.js`, línea 26 |
 | Ejecutar las pruebas, contarlas y decir cuántas pasaron | Mocha, una librería adicional. Ejecuta las pruebas y muestra resultados como `3 passing`. | `package.json` y `.mocharc.json` |
-| Comprobar un valor y mostrar «esperado» y «recibido» | `assert`, una librería incluida en Node.js. Comprueba si los valores son correctos y muestra las diferencias. | `pruebas/duelo.test.js`, líneas 1 y 29 |
-| Leer el texto de un `alert()` del navegador *(lo descubren en la Parte 2)* | Selenium lee el mensaje, pero nuestro código configura Chrome para evitar que la ventana se cierre automáticamente. | `soporte/driver.js`, líneas 14 a 16; `pruebas/duelo.test.js`, líneas 50 a 54 |
+| Comprobar un valor y mostrar «esperado» y «recibido» | `assert`, una librería incluida en Node.js. Comprueba si los valores son correctos y muestra las diferencias. | `pruebas/duelo.test.js`, líneas 1 y 26 |
+| Leer el texto de un `alert()` del navegador *(lo descubren en la Parte 2)* | Selenium lee el mensaje, pero nuestro código configura Chrome para evitar que la ventana se cierre automáticamente. | `soporte/driver.js`, líneas 14 a 16; `pruebas/duelo.test.js`, líneas 47 a 51 |
 | Dejar evidencia (captura, video o traza) cuando una prueba falla | Nadie. Si una prueba falla, no se guarda ninguna captura ni video. | Esta función no aparece en `duelo.test.js` ni en `driver.js`. |
 
 > _Respuesta:_ Selenium es una librería: nosotros la llamamos para controlar el navegador, y las demás tareas las hacen Mocha, `assert` y el código que escribimos. Un framework, en cambio, nos llama a nosotros y ya trae incluido cómo ejecutar, esperar y comprobar.
