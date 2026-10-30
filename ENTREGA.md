@@ -1,7 +1,7 @@
 # Entrega · Duelo de herramientas
 
 **Equipo:** Selenium-E4  
-**Integrantes:** Simon Restrepo aristizabal 
+**Integrantes:** Simon Restrepo aristizabal, Johan Sebastian Palacio
 **Repositorio:** https://github.com/simonrestrepo7923/Automatizacion_V2_Selenium  
 **Herramienta que nos tocó:** ☒ Selenium + Mocha &nbsp; ☐ Cypress &nbsp; ☐ Playwright + Cucumber  
 **Escenario que nos tocó:** E4 · Agencia Pixel
